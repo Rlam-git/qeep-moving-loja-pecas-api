@@ -2,6 +2,8 @@ package br.com.qm.api.pecas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,37 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.qm.api.pecas.dto.VendaDTO;
 import br.com.qm.api.pecas.entity.Venda;
+import br.com.qm.api.pecas.exception.ErroDeNegocioException;
 import br.com.qm.api.pecas.service.VendaService;
 
 @RestController
 @RequestMapping("/vendas")
 public class VendaController {
 
-//	POST /vendas 
-//	- realizar uma venda.
-//	Aqui você deverá criar uma estratégia para validar se é possível vender quantidade de peças informadas (de acordo com a quantidade em estoque).
-//
-//	GET /vendas
-//	- Listar todas as vendas
-//
-//	GET /vendas/faturamento
-//	- Retornar a soma dos valores de todas as vendas
-//
-//	GET /vendas/{nomeVendedor}/vendedor
-//	- Listar todas as vendas de um vendedor
-//
-//	GET /vendas/{formaPagamento}/pagamento
-//	- Listar todas as vendas por uma determinada forma de pagamento
-//
-//	DELETE /vendas/{idVenda}
-//	- Remove uma venda
-	
 	@Autowired
 	VendaService vendaService;
 	
 	@PostMapping
-	public Venda realizaVenda(@RequestBody Venda venda) {
+	public Venda realizaVenda(@Valid @RequestBody VendaDTO venda) throws ErroDeNegocioException {
 		return vendaService.realizaVenda(venda);
 	}
 	

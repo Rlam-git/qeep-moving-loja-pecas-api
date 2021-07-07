@@ -1,42 +1,39 @@
-package br.com.qm.api.pecas.entity;
+package br.com.qm.api.pecas.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import br.com.qm.api.pecas.entity.Venda;
 
-@Entity
-public class Venda {
+public class VendaDTO {
 
-	@Id
-	@Column(name = "id_venda")
-	private long idVenda;
+	@NotNull
+	private Long idVenda;
 	
-	@Column(name = "cod_barras")
-	private long codBarras;
+	@NotNull
+	private Long codBarras;
 	
-	private int quantidade;
+	@NotNull
+	@Min(value = 1)
+	private Integer quantidade;
 	
-	@Column(name = "nome_vendedor")
+	@NotBlank
 	private String nomeVendedor;
 
-	@Column(name = "data_venda")
+	@NotNull
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate dataVenda;
 
-	@Column(name = "forma_pagamento")
+	@NotBlank
 	private String formaPagamento;
-	
-	@Column(name = "valor_venda")
-	private Float valorVenda;
 
-	public Venda(long idVenda, long codBarras, int quantidade, String nomeVendedor, LocalDate dataVenda,
+	public VendaDTO(long idVenda, long codBarras, int quantidade, String nomeVendedor, LocalDate dataVenda,
 			String formaPagamento) {
 		this.idVenda = idVenda;
 		this.codBarras = codBarras;
@@ -46,9 +43,17 @@ public class Venda {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public Venda() {
+	public VendaDTO() {
 	}
 
+	public Venda toObject() {
+		
+		Venda venda = new Venda();
+		BeanUtils.copyProperties(this, venda);
+		
+		return venda;
+	}
+	
 	public long getIdVenda() {
 		return idVenda;
 	}
@@ -96,15 +101,5 @@ public class Venda {
 	public void setFormaPagamento(String formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
-
-	public Float getValorVenda() {
-		return valorVenda;
-	}
-
-	public void setValorVenda(Float valorVenda) {
-		this.valorVenda = valorVenda;
-	}
 	
 }
-
-

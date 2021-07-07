@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.qm.api.pecas.dto.VendaDTO;
 import br.com.qm.api.pecas.entity.Peca;
 import br.com.qm.api.pecas.entity.Venda;
+import br.com.qm.api.pecas.exception.ErroDeNegocioException;
 import br.com.qm.api.pecas.repository.VendaRepository;
 
 @Service
@@ -21,18 +23,22 @@ public class VendaService {
 	PecaService pecaService;
 	
 	
-	public Venda realizaVenda(Venda venda) {
+	public Venda realizaVenda(VendaDTO vendaDto) throws ErroDeNegocioException {
+		
+		Venda venda = vendaDto.toObject();
 		
 		Optional<Peca> pecaOpt = pecaService.consultaPeca(venda.getCodBarras());
 		
 		if (pecaOpt.isEmpty()) {
-			return null;
+			throw new ErroDeNegocioException("A venda não pode ser realizada pois a peça não existe!");
 		}
 		
 		Peca peca = pecaOpt.get();
 		
 		if (peca.getQtdEstoque() < venda.getQuantidade()) {
-			return null;
+			throw new ErroDeNegocioException(
+					"A venda não pode ser realizada pois a quantidade em estoque é menor do que a requisita! Hoje há em estoque "
+							+ peca.getQtdEstoque() + " peças");
 		}
 		
 		peca.setQtdEstoque(peca.getQtdEstoque() - venda.getQuantidade());
