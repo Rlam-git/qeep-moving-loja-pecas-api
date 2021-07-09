@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.qm.api.pecas.dto.ResponseDTO;
 import br.com.qm.api.pecas.dto.VendaDTO;
 import br.com.qm.api.pecas.entity.Venda;
 import br.com.qm.api.pecas.exception.ErroDeNegocioException;
@@ -26,7 +27,7 @@ public class VendaController {
 	VendaService vendaService;
 	
 	@PostMapping
-	public Venda realizaVenda(@Valid @RequestBody VendaDTO venda) throws ErroDeNegocioException {
+	public ResponseDTO realizaVenda(@Valid @RequestBody VendaDTO venda) throws ErroDeNegocioException {
 		return vendaService.realizaVenda(venda);
 	}
 	

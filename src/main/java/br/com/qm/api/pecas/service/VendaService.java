@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.qm.api.pecas.dto.ResponseDTO;
 import br.com.qm.api.pecas.dto.VendaDTO;
 import br.com.qm.api.pecas.entity.Peca;
 import br.com.qm.api.pecas.entity.Venda;
@@ -23,7 +24,7 @@ public class VendaService {
 	PecaService pecaService;
 	
 	
-	public Venda realizaVenda(VendaDTO vendaDto) throws ErroDeNegocioException {
+	public ResponseDTO realizaVenda(VendaDTO vendaDto) throws ErroDeNegocioException {
 		
 		Venda venda = vendaDto.toObject();
 		
@@ -45,7 +46,9 @@ public class VendaService {
 		venda.setValorVenda(venda.getQuantidade() * peca.getPrecoVenda());
 		
 		pecaService.alteraPeca(peca.getCodBarras(), peca);
-		return vendaRepository.save(venda);
+		vendaRepository.save(venda);
+		
+		return new ResponseDTO("Venda realizada com sucesso!");
 	}
 
 	public List<Venda> listarVendas() {

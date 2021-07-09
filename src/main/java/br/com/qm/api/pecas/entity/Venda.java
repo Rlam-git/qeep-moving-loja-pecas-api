@@ -8,9 +8,6 @@ import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 @Entity
 public class Venda {
 
@@ -104,6 +101,60 @@ public class Venda {
 	public void setValorVenda(Float valorVenda) {
 		this.valorVenda = valorVenda;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codBarras ^ (codBarras >>> 32));
+		result = prime * result + ((dataVenda == null) ? 0 : dataVenda.hashCode());
+		result = prime * result + ((formaPagamento == null) ? 0 : formaPagamento.hashCode());
+		result = prime * result + (int) (idVenda ^ (idVenda >>> 32));
+		result = prime * result + ((nomeVendedor == null) ? 0 : nomeVendedor.hashCode());
+		result = prime * result + quantidade;
+		result = prime * result + ((valorVenda == null) ? 0 : valorVenda.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Venda other = (Venda) obj;
+		if (codBarras != other.codBarras)
+			return false;
+		if (dataVenda == null) {
+			if (other.dataVenda != null)
+				return false;
+		} else if (!dataVenda.equals(other.dataVenda))
+			return false;
+		if (formaPagamento == null) {
+			if (other.formaPagamento != null)
+				return false;
+		} else if (!formaPagamento.equals(other.formaPagamento))
+			return false;
+		if (idVenda != other.idVenda)
+			return false;
+		if (nomeVendedor == null) {
+			if (other.nomeVendedor != null)
+				return false;
+		} else if (!nomeVendedor.equals(other.nomeVendedor))
+			return false;
+		if (quantidade != other.quantidade)
+			return false;
+		if (valorVenda == null) {
+			if (other.valorVenda != null)
+				return false;
+		} else if (!valorVenda.equals(other.valorVenda))
+			return false;
+		return true;
+	}
+	
+	
 	
 }
 
