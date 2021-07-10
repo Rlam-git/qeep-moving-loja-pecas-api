@@ -118,5 +118,63 @@ public class Peca {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + (int) (codBarras ^ (codBarras >>> 32));
+		result = prime * result + ((fabricante == null) ? 0 : fabricante.hashCode());
+		result = prime * result + ((modeloCarro == null) ? 0 : modeloCarro.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + Float.floatToIntBits(precoCusto);
+		result = prime * result + Float.floatToIntBits(precoVenda);
+		result = prime * result + qtdEstoque;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Peca other = (Peca) obj;
+		if (categoria == null) {
+			if (other.categoria != null)
+				return false;
+		} else if (!categoria.equals(other.categoria))
+			return false;
+		if (codBarras != other.codBarras)
+			return false;
+		if (fabricante == null) {
+			if (other.fabricante != null)
+				return false;
+		} else if (!fabricante.equals(other.fabricante))
+			return false;
+		if (modeloCarro == null) {
+			if (other.modeloCarro != null)
+				return false;
+		} else if (!modeloCarro.equals(other.modeloCarro))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (Float.floatToIntBits(precoCusto) != Float.floatToIntBits(other.precoCusto))
+			return false;
+		if (Float.floatToIntBits(precoVenda) != Float.floatToIntBits(other.precoVenda))
+			return false;
+		if (qtdEstoque != other.qtdEstoque)
+			return false;
+		return true;
+	}
+
 	
 }

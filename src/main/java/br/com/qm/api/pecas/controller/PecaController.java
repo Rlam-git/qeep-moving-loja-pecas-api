@@ -47,7 +47,7 @@ public class PecaController {
 	}
 	
 	@PutMapping(path = "/{codBarras}")
-	public Peca alteraPeca(@PathVariable Long codBarras, @RequestBody Peca peca) {
+	public Peca alteraPeca(@PathVariable Long codBarras, @RequestBody Peca peca) throws ErroDeNegocioException {
 		return pecaService.alteraPeca(codBarras, peca);
 	}
 	

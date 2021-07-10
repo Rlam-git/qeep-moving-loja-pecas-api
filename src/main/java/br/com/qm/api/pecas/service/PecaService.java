@@ -45,14 +45,14 @@ public class PecaService {
 		return true;
 	}
 	
-	public Peca alteraPeca(Long codBarras, Peca peca) {
+	public Peca alteraPeca(Long codBarras, Peca peca) throws ErroDeNegocioException {
 		
 		if (!codBarras.equals(peca.getCodBarras())) {
-			return null;
+			throw new ErroDeNegocioException("O id da peça do recurso é diferente do corpo!");
 		}
 		
 		if (!pecaRepository.existsById(codBarras)) {
-			return null;
+			throw new ErroDeNegocioException("A peça não existe");
 		}
 		
 		return pecaRepository.save(peca);
