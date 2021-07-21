@@ -18,7 +18,7 @@ public class Peca {
 	
 	@Id
 	@Column(name = "cod_barras")
-	private long codBarras;
+	private long codigoBarras;// como o nome da váriavel é curto não necessita de abreviação
 	
 	private String nome;
 	
@@ -34,19 +34,19 @@ public class Peca {
 	private float precoVenda;
 
 	@Column(name = "qtd_estoque")
-	private int qtdEstoque;
+	private int quantidadeEstoque;// como o nome da váriavel é curto não necessita de abreviação
 	
 	private String categoria;
 
-	public Peca(long codBarras, String nome, String modeloCarro, String fabricante, float precoCusto, float precoVenda,
-			int qtdEstoque, String categoria) {
-		this.codBarras = codBarras;
+	public Peca(long codigoBarras, String nome, String modeloCarro, String fabricante, float precoCusto, float precoVenda,
+			int quantidadeEstoque, String categoria) {
+		this.codigoBarras = codigoBarras;
 		this.nome = nome;
 		this.modeloCarro = modeloCarro;
 		this.fabricante = fabricante;
 		this.precoCusto = precoCusto;
 		this.precoVenda = precoVenda;
-		this.qtdEstoque = qtdEstoque;
+		this.quantidadeEstoque = quantidadeEstoque;
 		this.categoria = categoria;
 	}
 	
@@ -55,12 +55,12 @@ public class Peca {
 	}
 
 
-	public long getCodBarras() {
-		return codBarras;
+	public long getcodigoBarras() {
+		return codigoBarras;
 	}
 
-	public void setCodBarras(long codBarras) {
-		this.codBarras = codBarras;
+	public void setcodigoBarras(long codigoBarras) {
+		this.codigoBarras = codigoBarras;
 	}
 
 	public String getNome() {
@@ -103,12 +103,12 @@ public class Peca {
 		this.precoVenda = precoVenda;
 	}
 
-	public int getQtdEstoque() {
-		return qtdEstoque;
+	public int getquantidadeEstoque() {
+		return quantidadeEstoque;
 	}
 
-	public void setQtdEstoque(int qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
+	public void setquantidadeEstoque(int quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	public String getCategoria() {
@@ -125,13 +125,13 @@ public class Peca {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
-		result = prime * result + (int) (codBarras ^ (codBarras >>> 32));
+		result = prime * result + (int) (codigoBarras ^ (codigoBarras >>> 32));
 		result = prime * result + ((fabricante == null) ? 0 : fabricante.hashCode());
 		result = prime * result + ((modeloCarro == null) ? 0 : modeloCarro.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + Float.floatToIntBits(precoCusto);
 		result = prime * result + Float.floatToIntBits(precoVenda);
-		result = prime * result + qtdEstoque;
+		result = prime * result + quantidadeEstoque;
 		return result;
 	}
 
@@ -150,7 +150,7 @@ public class Peca {
 				return false;
 		} else if (!categoria.equals(other.categoria))
 			return false;
-		if (codBarras != other.codBarras)
+		if (codigoBarras != other.codigoBarras)
 			return false;
 		if (fabricante == null) {
 			if (other.fabricante != null)
@@ -171,7 +171,7 @@ public class Peca {
 			return false;
 		if (Float.floatToIntBits(precoVenda) != Float.floatToIntBits(other.precoVenda))
 			return false;
-		if (qtdEstoque != other.qtdEstoque)
+		if (quantidadeEstoque != other.quantidadeEstoque)
 			return false;
 		return true;
 	}

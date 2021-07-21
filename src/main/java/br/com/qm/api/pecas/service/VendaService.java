@@ -28,7 +28,7 @@ public class VendaService {
 		
 		Venda venda = vendaDto.toObject();
 		
-		Optional<Peca> pecaOpt = pecaService.consultaPeca(venda.getCodBarras());
+		Optional<Peca> pecaOpt = pecaService.consultaPeca(venda.getcodigoBarras());
 		
 		if (pecaOpt.isEmpty()) {
 			throw new ErroDeNegocioException("A venda não pode ser realizada pois a peça não existe!");
@@ -36,16 +36,16 @@ public class VendaService {
 		
 		Peca peca = pecaOpt.get();
 		
-		if (peca.getQtdEstoque() < venda.getQuantidade()) {
+		if (peca.getquantidadeEstoque() < venda.getQuantidade()) {
 			throw new ErroDeNegocioException(
 					"A venda não pode ser realizada pois a quantidade em estoque é menor do que a requisita! Hoje há em estoque "
-							+ peca.getQtdEstoque() + " peças");
+							+ peca.getquantidadeEstoque() + " peças");
 		}
 		
-		peca.setQtdEstoque(peca.getQtdEstoque() - venda.getQuantidade());
+		peca.setquantidadeEstoque(peca.getquantidadeEstoque() - venda.getQuantidade());
 		venda.setValorVenda(venda.getQuantidade() * peca.getPrecoVenda());
 		
-		pecaService.alteraPeca(peca.getCodBarras(), peca);
+		pecaService.alteraPeca(peca.getcodigoBarras(), peca);
 		vendaRepository.save(venda);
 		
 		return new ResponseDTO("Venda realizada com sucesso!");

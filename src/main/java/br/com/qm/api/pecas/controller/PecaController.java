@@ -51,9 +51,11 @@ public class PecaController {
 		return pecaService.alteraPeca(codBarras, peca);
 	}
 	
+	// como a pesquisa é feita pelo nome a váriavel texto não fica bem claro qual campo a pesquisa é feita alterando para nome não é necessário ler o restante do código .
+	// poderia mudar o nome do metodo como listarPecasComecadasComNome não sendo necessário ler o resante do código para saber qual compo é o critério de pesquisa
 	@GetMapping(path = "/{texto}/comeco")
-	public List<Peca> listaPecasComecadasCom(@PathVariable String texto) {
-		return pecaService.listaPecasComecadasCom(texto);
+	public List<Peca> listaPecasComecadasCom(@PathVariable String nome) {
+		return pecaService.listaPecasComecadasCom(nome);
 	}
 	
 	@GetMapping(path = "/{modeloCarro}/modeloCarro")

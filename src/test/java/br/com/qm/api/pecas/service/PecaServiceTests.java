@@ -28,7 +28,7 @@ public class PecaServiceTests {
 	public void deveCadastrarUmaPecaComSucesso() throws ErroDeNegocioException {
 		
 		Peca peca = new Peca();
-		peca.setCodBarras(55L);
+		peca.setcodigoBarras(55L);
 		
 		
 		Mockito.when(pecaRepository.existsById(55L)).thenReturn(false);
@@ -45,7 +45,7 @@ public class PecaServiceTests {
 	public void naoDeveCadastrarUmaPecaExistente() throws ErroDeNegocioException {
 		
 		Peca peca = new Peca();
-		peca.setCodBarras(55L);
+		peca.setcodigoBarras(55L);
 		
 		Mockito.when(pecaRepository.existsById(55L)).thenReturn(true);
 	
@@ -66,7 +66,7 @@ public class PecaServiceTests {
 	public void deveAlterarUmaPecaComSucesso() throws ErroDeNegocioException {
 		
 		Peca peca = new Peca();
-		peca.setCodBarras(55L);
+		peca.setcodigoBarras(55L);
 		
 		Mockito.when(pecaRepository.existsById(55L)).thenReturn(true);
 		Mockito.when(pecaRepository.save(Mockito.any(Peca.class))).thenReturn(peca);
@@ -80,7 +80,7 @@ public class PecaServiceTests {
 	public void naoDeveAlterarUmaPecaCasoOIdSejaDiferenteNoRecurso() {
 		
 		Peca peca = new Peca();
-		peca.setCodBarras(55L);
+		peca.setcodigoBarras(55L);
 		
 		String mensagemDeErroEsperada = "O id da peça do recurso é diferente do corpo!";
 		String mensagemRetornada = null;
@@ -99,7 +99,7 @@ public class PecaServiceTests {
 	public void naoDeveAlterarUmaPecaInexistente() {
 		
 		Peca peca = new Peca();
-		peca.setCodBarras(55L);
+		peca.setcodigoBarras(55L);
 		
 		String mensagemDeErroEsperada = "A peça não existe";
 		String mensagemRetornada = null;

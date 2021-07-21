@@ -45,11 +45,11 @@ public class VendaServiceTests {
 	@Test
 	public void deveRealizarUmaVenda() throws ErroDeNegocioException {
 		Peca peca = new Peca();
-		peca.setCodBarras(111L);
+		peca.setcodigoBarras(111L);
 		peca.setFabricante("VW");
 		peca.setModeloCarro("Polo");
 		peca.setNome("Volante");
-		peca.setQtdEstoque(10);
+		peca.setquantidadeEstoque(10);
 		peca.setPrecoCusto(100.5F);
 		peca.setPrecoVenda(500.3F);
 		peca.setCategoria("Acessorios");
@@ -99,11 +99,11 @@ public class VendaServiceTests {
 	public void naoDeveRealizarUmaVendaQuandoAQuantidadeForMaiorQueOEstoque() throws ErroDeNegocioException {
 		
 		Peca peca = new Peca();
-		peca.setCodBarras(111L);
+		peca.setcodigoBarras(111L);
 		peca.setFabricante("VW");
 		peca.setModeloCarro("Polo");
 		peca.setNome("Volante");
-		peca.setQtdEstoque(10);
+		peca.setquantidadeEstoque(10);
 		peca.setPrecoCusto(100.5F);
 		peca.setPrecoVenda(500.3F);
 		peca.setCategoria("Acessorios");

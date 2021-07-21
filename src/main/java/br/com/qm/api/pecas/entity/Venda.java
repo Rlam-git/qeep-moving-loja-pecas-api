@@ -16,7 +16,7 @@ public class Venda {
 	private long idVenda;
 	
 	@Column(name = "cod_barras")
-	private long codBarras;
+	private long codigoBarras; // como o nome da váriavel é curto não necessita de abreviação
 	
 	private int quantidade;
 	
@@ -33,10 +33,10 @@ public class Venda {
 	@Column(name = "valor_venda")
 	private Float valorVenda;
 
-	public Venda(long idVenda, long codBarras, int quantidade, String nomeVendedor, LocalDate dataVenda,
+	public Venda(long idVenda, long codigoBarras, int quantidade, String nomeVendedor, LocalDate dataVenda,
 			String formaPagamento) {
 		this.idVenda = idVenda;
-		this.codBarras = codBarras;
+		this.codigoBarras = codigoBarras;
 		this.quantidade = quantidade;
 		this.nomeVendedor = nomeVendedor;
 		this.dataVenda = dataVenda;
@@ -54,12 +54,12 @@ public class Venda {
 		this.idVenda = idVenda;
 	}
 
-	public long getCodBarras() {
-		return codBarras;
+	public long getcodigoBarras() {
+		return codigoBarras;
 	}
 
-	public void setCodBarras(long codBarras) {
-		this.codBarras = codBarras;
+	public void setcodigoBarras(long codigoBarras) {
+		this.codigoBarras = codigoBarras;
 	}
 
 	public int getQuantidade() {
@@ -106,7 +106,7 @@ public class Venda {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (codBarras ^ (codBarras >>> 32));
+		result = prime * result + (int) (codigoBarras ^ (codigoBarras >>> 32));
 		result = prime * result + ((dataVenda == null) ? 0 : dataVenda.hashCode());
 		result = prime * result + ((formaPagamento == null) ? 0 : formaPagamento.hashCode());
 		result = prime * result + (int) (idVenda ^ (idVenda >>> 32));
@@ -125,7 +125,7 @@ public class Venda {
 		if (getClass() != obj.getClass())
 			return false;
 		Venda other = (Venda) obj;
-		if (codBarras != other.codBarras)
+		if (codigoBarras != other.codigoBarras)
 			return false;
 		if (dataVenda == null) {
 			if (other.dataVenda != null)

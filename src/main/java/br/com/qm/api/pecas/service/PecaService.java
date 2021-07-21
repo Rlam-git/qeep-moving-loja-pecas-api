@@ -19,7 +19,7 @@ public class PecaService {
 	
 	public Peca cadastraPeca(Peca peca) throws ErroDeNegocioException {
 		
-		if (pecaRepository.existsById(peca.getCodBarras())) {
+		if (pecaRepository.existsById(peca.getcodigoBarras())) {
 			throw new ErroDeNegocioException("A peça já existe!");
 		}
 		
@@ -47,7 +47,7 @@ public class PecaService {
 	
 	public Peca alteraPeca(Long codBarras, Peca peca) throws ErroDeNegocioException {
 		
-		if (!codBarras.equals(peca.getCodBarras())) {
+		if (!codBarras.equals(peca.getcodigoBarras())) {
 			throw new ErroDeNegocioException("O id da peça do recurso é diferente do corpo!");
 		}
 		
@@ -58,8 +58,8 @@ public class PecaService {
 		return pecaRepository.save(peca);
 	}
 
-	public List<Peca> listaPecasComecadasCom(String texto) {
-		return pecaRepository.findAllByNomeStartingWith(texto);
+	public List<Peca> listaPecasComecadasCom(String nome) {
+		return pecaRepository.findAllByNomeStartingWith(nome);
 	}
 
 	public List<Peca> listaPecasPorModelo(String modeloCarro) {
